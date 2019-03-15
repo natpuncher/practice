@@ -38,15 +38,17 @@ namespace Practice
 			var arrayLength = array.Length;
 			for (var i = 0; i < arrayLength; i++)
 			{
-				var delta = sum - array[i];
+				var currentElement = array[i];
+				
+				var delta = sum - currentElement;
 				if (cache.Contains(delta))
 				{
 					return true;
 				}
 
-				if (!cache.Contains(array[i]))
+				if (!cache.Contains(currentElement))
 				{
-					cache.Add(array[i]);
+					cache.Add(currentElement);
 				}
 			}
 
