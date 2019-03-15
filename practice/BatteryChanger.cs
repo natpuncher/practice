@@ -4,9 +4,9 @@ namespace Practice
 {
 	/// <summary>
 	/// Have an array [4, 0, 2, 0, 2, 0]
-	/// that means batteries with change equals to array value
-	/// Each move point costs 1
-	/// You can change your battery at any point you stay point
+	/// that means batteries with charge equals to array value
+	/// Each move to the next index will cost you 1 charge
+	/// You can change your battery at any point you stay
 	/// Should say can you go outside the array from 0 index
 	/// </summary>
 	[TestFixture]
