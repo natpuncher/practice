@@ -2,3 +2,9 @@
 \.idea/
 
 packages/
+
+practice/bin/
+
+practice/obj/
+
+*.user
