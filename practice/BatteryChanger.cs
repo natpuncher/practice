@@ -16,17 +16,18 @@ namespace Practice
 		public void Test()
 		{
 			Assert.True(CanGoOutside(new[] {4, 2, 0, 0, 2, 0}));
+			Assert.True(CanGoOutside(new[] {4, 0, 1, 0, 1, 10, 0, 2}));
+
 			Assert.False(CanGoOutside(new[] {1, 0}));
 			Assert.False(CanGoOutside(new[] {0, 2}));
 			Assert.False(CanGoOutside(new[] {1, 0, 1, 0, 1, 0, 10, 0}));
 			Assert.False(CanGoOutside(new[] {1, 0, 1, 0, 1, 1, 0, 2}));
 			Assert.False(CanGoOutside(new[] {0, 1, 1, 0, 1, 10, 0, 2}));
-			Assert.True(CanGoOutside(new[] {4, 0, 1, 0, 1, 10, 0, 2}));
 		}
 
 		/// <summary>
 		/// The idea is going from the end and calculating move points to achieve this position
-		/// If you find a battery, check is it carrying your move points
+		/// If you find a battery, check is it carrying your move points and if so, reset the required move points
 		/// </summary>
 		/// <param name="batteries"></param>
 		/// <returns></returns>
