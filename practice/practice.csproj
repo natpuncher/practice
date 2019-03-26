@@ -42,7 +42,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphabetDecoder.cs" />
     <Compile Include="BatteryChanger.cs" />
+    <Compile Include="ProductArray.cs" />
     <Compile Include="PairMatchingSum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
