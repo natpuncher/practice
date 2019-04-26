@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
@@ -8,12 +9,10 @@ namespace Practice
 	/// Given the root to a binary tree
 	/// implement serialize(root), which serializes the tree into a string,
 	/// and deserialize(s), which deserializes the string back into the tree
-	/// recursion banned
 	/// </summary>
 	[TestFixture]
 	public class TreeSerializer
 	{
-		public const char Escape = '\\';
 		public const char OpenBracketSymbol = '(';
 		public const char CloseBracketSymbol = ')';
 		public const char NextElementSymbol = ',';
@@ -55,10 +54,29 @@ namespace Practice
 			Assert.AreEqual("a(b(d(f),e),c(j))", SerializeTree(CreateTree()));
 		}
 
-//		[Test]
+		[Test]
 		public void DeserializeTest()
 		{
-			var tree = CreateTree();
+			TestDeserializeTree(CreateTree());
+
+			TestDeserializeTree(
+				new Node
+				(
+					"root",
+					new Node("left")
+				));
+
+			TestDeserializeTree(
+				new Node
+				(
+					"root",
+					new Node("left"),
+					new Node("right")
+				));
+		}
+
+		private void TestDeserializeTree(Node tree)
+		{
 			var data = SerializeTree(tree);
 
 			var newTree = DeserializeTree(data);
@@ -86,7 +104,7 @@ namespace Practice
 		}
 
 		/// <summary>
-		/// Traverse tree depth first
+		/// Recursion hack
 		/// </summary>
 		/// <param name="tree"></param>
 		/// <returns></returns>
@@ -94,56 +112,42 @@ namespace Practice
 		{
 			var sb = new StringBuilder();
 
-			var level = 0;
-			var unprocessedChildCount = new int[100];
-			var stack = new Stack<Node>();
-			stack.Push(tree);
-			while (stack.Count > 0)
-			{
-				var node = stack.Pop();
-
-				sb.Append(node.Value);
-
-				if (node.Right != null)
-				{
-					unprocessedChildCount[level]++;
-					stack.Push(node.Right);
-				}
-
-				if (node.Left != null)
-				{
-					unprocessedChildCount[level]++;
-					stack.Push(node.Left);
-				}
-
-				var hasChildren = node.Right != null || node.Left != null;
-				if (hasChildren)
-				{
-					sb.Append(OpenBracketSymbol);
-					level++;
-					continue;
-				}
-
-				unprocessedChildCount[level - 1]--;
-
-				do
-				{
-					var isLastChildOnTheLevel = unprocessedChildCount[level - 1] == 0;
-					if (isLastChildOnTheLevel)
-					{
-						level--;
-						sb.Append(CloseBracketSymbol);
-					}
-					else
-					{
-						sb.Append(NextElementSymbol);
-					}
-				} while (level >= 1 && unprocessedChildCount[level - 1] == 0);
-			}
+			SerializeRecursive(tree, sb);
 
 			return sb.ToString();
 		}
 
+		private void SerializeRecursive(Node tree, StringBuilder sb)
+		{
+			sb.Append(tree.Value);
+
+			if (tree.Left != null)
+			{
+				sb.Append(OpenBracketSymbol);
+
+				SerializeRecursive(tree.Left, sb);
+
+				if (tree.Right == null)
+				{
+					sb.Append(CloseBracketSymbol);
+				}
+			}
+
+			if (tree.Right != null)
+			{
+				sb.Append(tree.Left == null ? OpenBracketSymbol : NextElementSymbol);
+
+				SerializeRecursive(tree.Right, sb);
+
+				sb.Append(CloseBracketSymbol);
+			}
+		}
+
+		/// <summary>
+		/// Store node parents to dictionary
+		/// </summary>
+		/// <param name="data"></param>
+		/// <returns></returns>
 		private Node DeserializeTree(string data)
 		{
 			var sb = new StringBuilder();
@@ -151,6 +155,8 @@ namespace Practice
 			var result = new Node();
 
 			var currentNode = result;
+
+			var parents = new Dictionary<Node, Node>();
 
 			var length = data.Length;
 			for (var i = 0; i < length; i++)
@@ -169,29 +175,47 @@ namespace Practice
 					continue;
 				}
 
-				currentNode.Value = sb.ToString();
-				sb.Length = 0;
+				WriteNodeValue(currentNode, sb);
 
 				if (isOpen)
 				{
 					currentNode.Left = new Node();
+					parents[currentNode.Left] = currentNode;
 					currentNode = currentNode.Left;
+					Console.WriteLine(SerializeTree(result));
 					continue;
 				}
 
 				if (isNext)
 				{
+					currentNode = parents[currentNode];
 					currentNode.Right = new Node();
+					parents[currentNode.Right] = currentNode;
 					currentNode = currentNode.Right;
+					Console.WriteLine(SerializeTree(result));
 					continue;
 				}
 
 				if (isClose)
 				{
+					currentNode = parents[currentNode];
+					Console.WriteLine(SerializeTree(result));
+					continue;
 				}
 			}
 
 			return result;
+		}
+
+		private static void WriteNodeValue(Node currentNode, StringBuilder sb)
+		{
+			if (sb.Length == 0)
+			{
+				return;
+			}
+			
+			currentNode.Value = sb.ToString();
+			sb.Length = 0;
 		}
 	}
 }
