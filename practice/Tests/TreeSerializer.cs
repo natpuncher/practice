@@ -13,9 +13,10 @@ namespace Practice
 	[TestFixture]
 	public class TreeSerializer
 	{
-		public const char OpenBracketSymbol = '(';
-		public const char CloseBracketSymbol = ')';
-		public const char NextElementSymbol = ',';
+		//todo : add some escape symbol
+		private const char OpenBracketSymbol = '(';
+		private const char CloseBracketSymbol = ')';
+		private const char NextElementSymbol = ',';
 
 		public class Node
 		{
@@ -213,7 +214,7 @@ namespace Practice
 			{
 				return;
 			}
-			
+
 			currentNode.Value = sb.ToString();
 			sb.Length = 0;
 		}
