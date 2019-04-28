@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Practice
@@ -11,6 +12,52 @@ namespace Practice
 	[TestFixture]
 	public class FirstMissingPositive
 	{
-		
+		[Test]
+		public void Test()
+		{
+			Assert.AreEqual(2, FindMinMissingPositive(new []{3, 4, -1, 1}));
+			Assert.AreEqual(3, FindMinMissingPositive(new []{1, 2, 0}));
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="array"></param>
+		/// <returns></returns>
+		private int FindMinMissingPositive(int[] array)
+		{
+			var result = 1;
+
+			var cache = new HashSet<int>();
+			var arrayLength = array.Length;
+			for (var i = 0; i < arrayLength; i++)
+			{
+				var element = array[i];
+				if (cache.Contains(element))
+				{
+					continue;
+				}
+
+				cache.Add(element);
+
+				if (result < element)
+				{
+					continue;
+				}
+				
+				result = GetMinNotInCache(cache, element, result);
+			}
+
+			return result;
+		}
+
+		private int GetMinNotInCache(HashSet<int> cache, int border, int result)
+		{
+			while (result <= border || cache.Contains(result))
+			{
+				result++;
+			}
+			return result;
+		}
 	}
 }
