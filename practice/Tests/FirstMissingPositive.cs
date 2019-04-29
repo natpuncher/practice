@@ -20,7 +20,7 @@ namespace Practice
 		}
 
 		/// <summary>
-		/// 
+		/// Should be better feelsbadman
 		/// </summary>
 		/// <param name="array"></param>
 		/// <returns></returns>

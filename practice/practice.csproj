@@ -45,6 +45,7 @@
     <Compile Include="Tests\AlphabetDecoder.cs" />
     <Compile Include="Tests\BatteryChanger.cs" />
     <Compile Include="Tests\FirstMissingPositive.cs" />
+    <Compile Include="Tests\MaxNonAdjacentSum.cs" />
     <Compile Include="Tests\PairMatchingSum.cs" />
     <Compile Include="Tests\ProductArray.cs" />
     <Compile Include="Tests\Rnd5ToRnd7.cs" />
