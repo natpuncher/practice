@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Practice
@@ -20,21 +19,73 @@ namespace Practice
 			Assert.AreEqual(10, GetMaxNonAdjacentSum(new []{5, 1, 1, 5}));
 		}
 
+		/// <summary>
+		/// [2, 4, 6, 2, 5]
+		/// [4, 8, 6, 11, 2] - negate
+		///
+		/// [5, 1, 1, 5]
+		/// [1, 5, 6, 1] - negate
+		///
+		/// [5, 1, 1, 5, 5, 1, 1, 5]
+		/// [1, 6, 6, 6, 6, 6, 6, 1] - negate
+		///
+		/// if array.all(i < 0) -> return array.max
+		/// </summary>
+		/// <param name="array"></param>
+		/// <returns></returns>
 		private int GetMaxNonAdjacentSum(int[] array)
 		{
-			var data = new List<SumData>();
-			return 0;
+			var result = 0;
+
+			var arrayLength = array.Length;
+			var index = 0;
+			while (index < arrayLength)
+			{
+				var isLastElement = index == arrayLength - 1;
+				if (isLastElement)
+				{
+					// get first
+				}
+				
+				var first = array[index];
+				var second = array[index + 1];
+
+				var negate1 = GetNegate(index, array);
+				var negate2 = GetNegate(index + 1, array);
+
+				if (negate1 > negate2)
+				{
+					// get second
+				}
+				else if (negate1 < negate2)
+				{
+					// get first
+				}
+				else
+				{
+					if (second > first)
+					{
+						//get second
+					}
+					else
+					{
+						// get first
+					}
+				}
+			}
+			
+			return result;
 		}
 
-		public class SumData
+		/// <summary>
+		/// get sum of adjacent elements
+		/// </summary>
+		/// <param name="index"></param>
+		/// <param name="array"></param>
+		/// <returns></returns>
+		private int GetNegate(int index, int[] array)
 		{
-			public int Sum { get; }
-			
-			private int _lastIndex;
-
-			public void Add(int index, int val)
-			{
-			}
+			return 0;
 		}
 	}
 }
