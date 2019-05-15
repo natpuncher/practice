@@ -48,8 +48,10 @@
     <Compile Include="Tests\MaxNonAdjacentSum.cs" />
     <Compile Include="Tests\PairMatchingSum.cs" />
     <Compile Include="Tests\ProductArray.cs" />
+    <Compile Include="Tests\RightDownMatrixWalker.cs" />
     <Compile Include="Tests\Rnd5ToRnd7.cs" />
     <Compile Include="Tests\TreeSerializer.cs" />
+    <Compile Include="Tests\URLShortener.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
