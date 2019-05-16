@@ -72,6 +72,8 @@ namespace Practice
 						// get first
 					}
 				}
+
+				index++;
 			}
 			
 			return result;
