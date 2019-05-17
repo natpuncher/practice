@@ -41,13 +41,16 @@ namespace Practice
 			var index = 0;
 			while (index < arrayLength)
 			{
+				var first = array[index];
+				
 				var isLastElement = index == arrayLength - 1;
 				if (isLastElement)
 				{
-					// get first
+					result += first;
+					index += 2;
+					continue;
 				}
 				
-				var first = array[index];
 				var second = array[index + 1];
 
 				var negate1 = GetNegate(index, array);
@@ -55,23 +58,27 @@ namespace Practice
 
 				if (negate1 > negate2)
 				{
-					// get second
+					result += second;
+					index += 1;
 				}
 				else if (negate1 < negate2)
 				{
-					// get first
+					result += first;
 				}
 				else
 				{
 					if (second > first)
 					{
-						//get second
+						result += second;
+						index += 1;
 					}
 					else
 					{
-						// get first
+						result += first;
 					}
 				}
+				
+				index += 2;
 			}
 			
 			return result;
@@ -85,7 +92,19 @@ namespace Practice
 		/// <returns></returns>
 		private int GetNegate(int index, int[] array)
 		{
-			return 0;
+			var isFirst = index == 0;
+			if (isFirst)
+			{
+				return array[1];
+			}
+
+			var isLast = index == array.Length - 1;
+			if (isLast)
+			{
+				return array[index - 1];
+			}
+			
+			return array[index + 1] + array[index - 1];
 		}
 	}
 }
