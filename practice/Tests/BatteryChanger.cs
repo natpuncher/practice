@@ -26,7 +26,7 @@ namespace Practice
 		}
 
 		/// <summary>
-		/// The idea is going from the end and calculating move points to achieve this position
+		/// The idea is to go from the end and calculate move points for achieving this position
 		/// If you find a battery, check is it carrying your move points and if so, reset the required move points
 		/// </summary>
 		/// <param name="batteries"></param>
