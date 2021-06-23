@@ -46,6 +46,7 @@
     <Compile Include="Tests\BatteryChanger.cs" />
     <Compile Include="Tests\BracketStringValidator.cs" />
     <Compile Include="Tests\FirstMissingPositive.cs" />
+    <Compile Include="Tests\MakeNonDecreasingArrayByOneChange.cs" />
     <Compile Include="Tests\MaxNonAdjacentSum.cs" />
     <Compile Include="Tests\PairMatchingSum.cs" />
     <Compile Include="Tests\ProductArray.cs" />
