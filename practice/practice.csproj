@@ -48,6 +48,7 @@
     <Compile Include="Tests\FirstMissingPositive.cs" />
     <Compile Include="Tests\MakeNonDecreasingArrayByOneChange.cs" />
     <Compile Include="Tests\MaxNonAdjacentSum.cs" />
+    <Compile Include="Tests\MonteCarloPiEstimation.cs" />
     <Compile Include="Tests\PairMatchingSum.cs" />
     <Compile Include="Tests\ProductArray.cs" />
     <Compile Include="Tests\RightDownMatrixWalker.cs" />
