@@ -55,6 +55,7 @@
     <Compile Include="Tests\RightDownMatrixWalker.cs" />
     <Compile Include="Tests\Rnd5ToRnd7.cs" />
     <Compile Include="Tests\StaircaseClimb.cs" />
+    <Compile Include="Tests\StockMaximumProfit.cs" />
     <Compile Include="Tests\TreeSerializer.cs" />
     <Compile Include="Tests\URLShortener.cs" />
     <Compile Include="Tests\WordMatrix.cs" />
