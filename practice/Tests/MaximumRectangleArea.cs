@@ -19,18 +19,24 @@ namespace Practice
 		[Test]
 		public void Test()
 		{
-			Assert.AreEqual(6, GetMaximumRectangleArea(new []{1, 3, 2, 5, 1}));
-			Assert.AreEqual(6, GetMaximumRectangleArea(new []{1, 3, 2, 5}));
-			Assert.AreEqual(5, GetMaximumRectangleArea(new []{1, 2, 3, 1, 2}));
-			Assert.AreEqual(31, GetMaximumRectangleArea(new []{1, 2, 31, 1, 2}));
+			Assert.AreEqual(6, GetMaximumRectangleArea(new[] {1, 3, 2, 5, 1}));
+			Assert.AreEqual(6, GetMaximumRectangleArea(new[] {1, 3, 2, 5}));
+			Assert.AreEqual(5, GetMaximumRectangleArea(new[] {1, 2, 3, 1, 2}));
+			Assert.AreEqual(31, GetMaximumRectangleArea(new[] {1, 2, 31, 1, 2}));
+			Assert.AreEqual(6, GetMaximumRectangleArea(new[] {1, 3, 2, 5}));
+			Assert.AreEqual(10, GetMaximumRectangleArea(new[] {1, 3, 2, 5, 5}));
+			Assert.AreEqual(8, GetMaximumRectangleArea(new[] {1, 3, 2, 5, 3}));
+			Assert.AreEqual(4, GetMaximumRectangleArea(new[] {1, 1, 2, 1}));
+			Assert.AreEqual(7, GetMaximumRectangleArea(new[] {1, 7, 1, 1}));
+			Assert.AreEqual(6, GetMaximumRectangleArea(new[] {1, 1, 1, 1, 1, 1, 0, 1, 1, 1}));
 		}
 
 		private int GetMaximumRectangleArea(int[] heights)
 		{
 			var areaIndexes = new Stack<int>();
-			
+
 			var maximumArea = 0;
-			
+
 			var heightsLength = heights.Length;
 			for (var index = 0; index < heightsLength; index++)
 			{
@@ -42,7 +48,7 @@ namespace Practice
 						maximumArea = area;
 					}
 				}
-				
+
 				areaIndexes.Push(index);
 			}
 
@@ -84,7 +90,7 @@ namespace Practice
 			{
 				return 0;
 			}
-			
+
 			var index = indexesBuffer.Pop();
 			var height = heights[index];
 			var areaStartIndex = indexesBuffer.Count > 0 ? indexesBuffer.Peek() + 1 : 0;
